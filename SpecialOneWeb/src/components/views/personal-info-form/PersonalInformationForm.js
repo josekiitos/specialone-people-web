@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
+import { getOnePersonalInformation } from '../../../services/personalInformationService.js';
 
 const PersonalInformationForm = () => {
+    const [personalInfo, setPersonalInfo] = useState(null)
+
+    useEffect(() => {
+        getPersonalInfoById('309d36de-b29f-4074-b8b1-41165909bd61');
+    }, []);
+
+    const getPersonalInfoById = async (id) => {
+        let personInfo;
+        try {
+            personInfo = await getOnePersonalInformation(id);
+        } catch (error) {
+            console.error('Error retreiving personal information' + error)
+        }
+        console.log(personInfo)
+        setPersonalInfo(personInfo);
+    }
+
     return (
         <Box
             component="form"
