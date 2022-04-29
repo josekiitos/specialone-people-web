@@ -18,7 +18,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import { NavLink } from "react-router-dom";
 import "./Header.css";
-import { DrawerHeader } from "../globalCustomComponents.js";
+import { DrawerHeader } from "../../../globalCustomComponents.js";
 
 const drawerWidth = 240;
 
