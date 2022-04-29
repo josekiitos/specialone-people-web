@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import { getOnePersonalInformation } from '../../../services/personalInformationService.js';
 
 const PersonalInformationForm = () => {
-    const [personalInfo, setPersonalInfo] = useState(null)
+    const [personalInfo, setPersonalInfo] = useState({ firstName: '', lastName: '', nickName: '', profilePicture: '' })
 
     useEffect(() => {
         getPersonalInfoById('309d36de-b29f-4074-b8b1-41165909bd61');
@@ -19,8 +19,8 @@ const PersonalInformationForm = () => {
         } catch (error) {
             console.error('Error retreiving personal information' + error)
         }
-        console.log(personInfo)
-        setPersonalInfo(personInfo);
+        console.log(personInfo.data)
+        setPersonalInfo(personInfo.data);
     }
 
     return (
@@ -36,17 +36,23 @@ const PersonalInformationForm = () => {
         >
             <Avatar
                 alt="Profile Picture"
-                src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
+                src={personalInfo.profilePicture}
                 sx={{
                     width: 100, height: 100, marginLeft: '50%'
                 }}
             />
             <Box sx={{ width: '100%', marginLeft: '25%'}}>
-                <TextField id="outlined-basic" label="First Name" variant="outlined" fullWidth style={{ marginTop: 15, width: '60%' }} />
-                <TextField id="outlined-basic" label="Last Name" variant="outlined" fullWidth style={{ marginTop: 10, width: '60%'  }} />
-                <TextField id="outlined-basic" label="Nick Name" variant="outlined" fullWidth style={{ marginTop: 10, width: '60%'  }} />
+                <TextField id="outlined-basic" label="First Name" variant="outlined"
+                    value={personalInfo.firstName}
+                    fullWidth style={{ marginTop: 15, width: '60%' }} />
+                <TextField id="outlined-basic" label="Last Name" variant="outlined"
+                    value={personalInfo.lastName}
+                    fullWidth style={{ marginTop: 10, width: '60%' }} />
+                <TextField id="outlined-basic" label="Nick Name" variant="outlined"
+                    value={personalInfo.nickName}
+                    fullWidth style={{ marginTop: 10, width: '60%' }} />
             </Box>
-            <Button variant="contained" style={{ marginTop: 15, marginLeft: '50%' }}>Contained</Button>
+            <Button variant="contained" style={{ marginTop: 15, marginLeft: '50%' }}>Submit</Button>
         </Box>
     )
 }
