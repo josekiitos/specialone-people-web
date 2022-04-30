@@ -14,7 +14,9 @@ function App() {
                 <DrawerHeader />
                 <Routes>
                     <Route path="/" element={<div>Hello World</div>} />
-                    <Route path="/edit-personal-info" element={<PersonalInformation/>} />
+                    <Route path="/edit-personal-info/" element={<PersonalInformation />} >
+                        <Route path=":personalInfoId" element={<PersonalInformation />} />
+                    </Route>
                     <Route path="/edit-contact-info" element={<div>Contact Info</div>} />
                 </Routes>
             </Main>

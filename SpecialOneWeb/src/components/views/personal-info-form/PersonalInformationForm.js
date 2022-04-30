@@ -4,12 +4,17 @@ import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import { getOnePersonalInformation } from '../../../services/personalInformationService.js';
+import { useParams } from 'react-router-dom';
 
 const PersonalInformationForm = () => {
     const [personalInfo, setPersonalInfo] = useState({ firstName: '', lastName: '', nickName: '', profilePicture: '' })
+    const { personalInfoId } = useParams();
 
     useEffect(() => {
-        getPersonalInfoById('309d36de-b29f-4074-b8b1-41165909bd61');
+        console.log(personalInfoId)
+        if (personalInfoId !== undefined) {
+            getPersonalInfoById(personalInfoId);
+        }
     }, []);
 
     const getPersonalInfoById = async (id) => {
