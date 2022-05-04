@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from "../src/components/views/header/Header.js";
 import { Main, DrawerHeader } from "./globalCustomComponents.js";
 import PersonalInformation from "../src/components/views/personal-info-form/PersonalInformationForm.js";
+import ContactInfoForm from "../src/components/views/contact-info-form/ContactInfoForm";
 
 function App() {
     const [open, setOpen] = useState(false);
@@ -17,7 +18,7 @@ function App() {
                     <Route path="/edit-personal-info/" element={<PersonalInformation />} >
                         <Route path=":personalInfoId" element={<PersonalInformation />} />
                     </Route>
-                    <Route path="/edit-contact-info" element={<div>Contact Info</div>} />
+                    <Route path="/edit-contact-info" element={<ContactInfoForm/>} />
                 </Routes>
             </Main>
         </div>
