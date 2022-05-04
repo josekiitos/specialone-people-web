@@ -14,7 +14,6 @@
     <Folder Include="src\components\views\contact-info-form\" />
     <Folder Include="src\components\views\personal-info-form\" />
     <Folder Include="src\constants\" />
-    <Folder Include="src\services\" />
   </ItemGroup>
   <!-- This target is copied from the ASP.NET SPA template in order to ensure node_modules are in place. -->
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
