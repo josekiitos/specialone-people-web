@@ -3,15 +3,24 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import { getOnePersonalInformation } from '../../../services/personalInformationService.js';
+import { getOnePersonalInformation, updatePersonalInformation } from '../../../services/personalInformationService.js';
 import { useParams } from 'react-router-dom';
 
 const PersonalInformationForm = () => {
     const [personalInfo, setPersonalInfo] = useState({ firstName: '', lastName: '', nickName: '', profilePicture: '' })
     const { personalInfoId } = useParams();
 
+    const hendleClickSubmit = async () => {
+        let newPersonalInfo;
+        try {
+            newPersonalInfo = await updatePersonalInformation(personalInfoId, personalInfo);
+            setPersonalInfo(newPersonalInfo.data);
+        } catch (error) {
+            console.error('Error updating personal information' + error);
+        }
+    }
+
     useEffect(() => {
-        console.log(personalInfoId)
         if (personalInfoId !== undefined) {
             getPersonalInfoById(personalInfoId);
         }
@@ -76,7 +85,7 @@ const PersonalInformationForm = () => {
                     onChange={handleChangeNickName}
                     fullWidth style={{ marginTop: 10, width: '60%' }} />
             </Box>
-            <Button variant="contained" style={{ marginTop: 15, marginLeft: '50%' }}>Submit</Button>
+            <Button variant="contained" style={{ marginTop: 15, marginLeft: '50%' }} onClick={() => hendleClickSubmit()}>Submit</Button>
         </Box>
     )
 }
