@@ -6,12 +6,14 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { getAllContactTypes } from '../../../services/ContactService.js';
+import { getAllContactTypes, createContactInfo } from '../../../services/ContactService.js';
+import { useParams } from 'react-router-dom';
 
 const ContactInfoForm = () => {
     const [contactType, setContactType] = useState('');
     const [contactTypes, setContactTypes] = useState([]);
     const [contactDetail, setContactDetail] = useState('');
+    const { personalInfoId } = useParams();
 
     useEffect(() => {
         fetchContactTypes();
@@ -36,7 +38,17 @@ const ContactInfoForm = () => {
     }
 
     const hendleClickSubmit = () => {
-        console.log('submit');
+        if (personalInfoId !== undefined) {
+            let newContact = { contactTypeId: contactType.id, detail: contactDetail };
+            let contactData;
+            try {
+                //contactData = await createContactInfo(personalInfoId, newContact);
+                console.log(newContact)
+                setContactDetail('');
+            } catch (error) {
+                console.error('Error creating contact information' + error);
+            }
+        }
     }
 
     return (

@@ -14,11 +14,13 @@ function App() {
             <Main open={open}>
                 <DrawerHeader />
                 <Routes>
-                    <Route path="/" element={<div>Hello World</div>} />
+                    <Route path="/" element={<div>People Web</div>} />
                     <Route path="/edit-personal-info/" element={<PersonalInformation />} >
                         <Route path=":personalInfoId" element={<PersonalInformation />} />
                     </Route>
-                    <Route path="/edit-contact-info" element={<ContactInfoForm/>} />
+                    <Route path="/edit-contact-info/" element={<ContactInfoForm />} >
+                        <Route path=":personalInfoId" element={<ContactInfoForm />} />
+                    </Route>
                 </Routes>
             </Main>
         </div>
