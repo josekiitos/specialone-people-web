@@ -23,7 +23,7 @@ const ContactInfoForm = () => {
         let contactTypeList = [];
         try {
             contactTypeList = await getAllContactTypes();
-            setContactTypes(contactTypeList)
+            setContactTypes(contactTypeList.data);
         } catch (error) {
             console.error('Error retreiving contact types' + error);
         }
@@ -63,7 +63,7 @@ const ContactInfoForm = () => {
                     onChange={handleChange}
                 >
                     {contactTypes.map((contactT, index) => (
-                        <MenuItem value={contactT} key={index}>{contactT.name}</MenuItem>
+                        <MenuItem value={contactT} key={index}>{contactT.type}</MenuItem>
                      ))}
                 </Select>
                 <TextField id="nickName" label="Detail" variant="outlined"
